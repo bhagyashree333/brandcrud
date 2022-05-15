@@ -1,11 +1,6 @@
 ﻿using Day39CaseStudy.DataAccess;
 using Day39CaseStudy.DataAccess.Models;
 using Day39CaseStudy.Services.DbService.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Day39CaseStudy.Services.DbService;
 
@@ -40,13 +35,18 @@ public class CrudCategoryService : ICrudService<Category>
     {
         using var context = new SampleStoreDbContext();
 
-        var allcategories = from c in context.Products
-                            select c;
+        foreach(var cat in context.Categories)
+        {
+            Console.WriteLine($"{cat}");
+        }
+        return context.Categories.ToList();
+        //var allcats= from c in context.Categories
+        //             select c;
 
-        return allcategories as IEnumerable<Category>;
+      //  return allcats;
     }
 
-    public Product GetByName(string categoryName)
+    public Category GetByName(string categoryName)
     {
         using var context = new SampleStoreDbContext();
 
@@ -57,14 +57,11 @@ public class CrudCategoryService : ICrudService<Category>
         return category.First();
     }
 
-
-    public void Update(Category entity)
+    public void Update(Category category)
     {
-        throw new NotImplementedException();
-    }
+        using var context = new SampleStoreDbContext();
 
-    Category ICrudService<Category>.GetByName(string entityName)
-    {
-        throw new NotImplementedException();
+        context.Categories.Update(category);
+        context.SaveChanges();
     }
 }
