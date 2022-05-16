@@ -1,4 +1,6 @@
-﻿namespace Day39CaseStudy.Services.DbService.Interfaces;
+﻿using Day39CaseStudy.DataAccess.Models;
+
+namespace Day39CaseStudy.Services.DbService.Interfaces;
 
 public interface ICrudService<T>
 {
@@ -6,5 +8,6 @@ public interface ICrudService<T>
     IEnumerable<T> GetAll();
     void Update(T entity);
     T GetByName(string entityName);
-    void Delete(int entityId);
+    void Delete(int entityId);   
+    void GetProductByBrand(int brandidToSearch);
 }

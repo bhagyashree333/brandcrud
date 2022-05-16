@@ -8,13 +8,15 @@ public class UserInterfaceCrudBrandService
 {
     //CrudBrandService _brandService;           // TIGHTLY BOUND. VERY BAD
 
-    readonly ICrudService<Brand> _brandService; // LOOSELY BOUND. VERY GOOD
-
+    readonly ICrudService<Brand> _brandService; // LOOSELY BOUND. VERY GOOD    //??????how read only when we are updating it
+     
     public UserInterfaceCrudBrandService()
     {
         //_brandService = new CrudBrandService();       // TIGHTLY BOUND. VERY BAD
 
-        _brandService = CrudFactory.Create<Brand>();    // LOOSELY BOUND. VERY GOOD
+        _brandService = CrudFactory.Create<Brand>(); // LOOSELY BOUND. VERY GOOD
+      
+
     }
 
     public void Add()
@@ -26,6 +28,7 @@ public class UserInterfaceCrudBrandService
         var brandNameText = Console.ReadLine();
 
         var brand = new Brand { BrandName = brandNameText };
+        
 
         _brandService.Add(brand);
     }
@@ -87,15 +90,18 @@ public class UserInterfaceCrudBrandService
     {
         var brands = _brandService.GetAll();
 
+
         Console.WriteLine("Brand List");
-        Console.WriteLine("----------");
+        Console.WriteLine("-------------------------");
 
         Console.WriteLine(Brand.Header);
-        Console.WriteLine("------------------");
+        Console.WriteLine("-------------------------");
         foreach (var brand in brands)
         {
             Console.WriteLine(brand);
         }
-        Console.WriteLine("------------------");
+         
+        Console.WriteLine("-------------------------");
+       
     }
 }

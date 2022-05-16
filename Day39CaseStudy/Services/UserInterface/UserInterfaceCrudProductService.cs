@@ -110,17 +110,35 @@ public class UserInterfaceCrudProductService
 
     public void Show()
     {
-        var products = _productService.GetAll();
+        var prods = _productService.GetAll();
 
         Console.WriteLine("Product List");
         Console.WriteLine("----------");
 
         Console.WriteLine(Product.Header);
         Console.WriteLine("------------------");
-        foreach (var product in products)
+        foreach (var product in prods)
         {
             Console.WriteLine(product);
         }
         Console.WriteLine("------------------");
+    }
+
+    public void GetProductByBrand()
+    {
+        Console.WriteLine("Enter brand id");
+        var brandidToSearch=int.Parse(Console.ReadLine());
+       // var prods = _productService.GetAll();
+
+        if (brandidToSearch == null)
+        {
+            Console.WriteLine($"No product exists related to brand {brandidToSearch}");
+            return;
+        }
+       Console.WriteLine( Product.Header);
+        _productService.GetProductByBrand(brandidToSearch);
+
+
+
     }
 }

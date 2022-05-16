@@ -18,7 +18,7 @@ public class CrudCategoryService : ICrudService<Category>
     {
         using var context = new SampleStoreDbContext();
         var category = from c in context.Categories
-                       where c.CategoryId == categoryId
+                       where c.CategoryId .Equals(categoryId)
                        select c;
         if (category == null)
         {
@@ -55,6 +55,11 @@ public class CrudCategoryService : ICrudService<Category>
                        select c;
 
         return category.First();
+    }
+
+    public void GetProductByBrand(int brandidToSearch)
+    {
+        throw new NotImplementedException();
     }
 
     public void Update(Category category)

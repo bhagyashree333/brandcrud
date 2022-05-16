@@ -70,4 +70,9 @@ public class CrudBrandService : ICrudService<Brand>
         context.Brands.Remove(brandtobedeleted);
         context.SaveChanges();
     }
+
+    public void GetProductByBrand(int brandidToSearch)
+    {
+        throw new NotImplementedException();
+    }
 }

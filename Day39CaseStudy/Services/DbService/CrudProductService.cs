@@ -27,23 +27,43 @@ public class CrudProductService : ICrudService<Product>
         //    .ToList();
 
 
-        var allProducts = from p in context.Products
-                           join
-                           b in context.Brands
-                           on p.BrandId equals b.BrandId
-                           join
-                           c in context.Categories
-                           on p.CategoryId equals c.CategoryId
+        var allProducts = (from p in context.Products
+                          join
+                          b in context.Brands
+                          on
+                          p.BrandId equals b.BrandId
+                          join
+                          c in context.Categories
+                          on
+                          p.CategoryId equals c.CategoryId
+                          orderby p.CategoryId, p.BrandId
+                          select new Product
+                          { 
+                           ProductId = p.ProductId,
+                           ProductName = p.ProductName,
+                           BrandId = p.BrandId, 
+                           CategoryId = p.CategoryId,
+                           ModelYear = p.ModelYear,
+                           ListPrice = p.ListPrice, 
+                           Brand=b,
+                           Category=c,
+                         
+                          
+                          
+                          }).ToList();
 
-                           select (p.ProductName + " " + b.BrandName + " " + c.CategoryName).ToList();
 
-        Console.WriteLine(allProducts);
-        //foreach(var prod in allProducts)
-        //{
-        //    Console.WriteLine(allProducts);
-        //}
 
-        return allProducts as IEnumerable<Product>;
+
+
+
+        //Console.WriteLine(allProducts);
+
+
+        return allProducts.ToList();
+
+
+
 
 
     }
@@ -73,7 +93,7 @@ public class CrudProductService : ICrudService<Product>
         using var context = new SampleStoreDbContext();
 
         //var product = context.Products.Find(productId);
-        var product= from p in context.Products
+        var product = from p in context.Products
                      where p.ProductId == productId
                      select p;
 
@@ -86,5 +106,24 @@ public class CrudProductService : ICrudService<Product>
         var productIwantToDelete=product.First();
         context.Products.Remove(productIwantToDelete);
         context.SaveChanges();
+    }
+
+
+    public void GetProductByBrand(int brandidToSearch)
+    {
+        using var context = new SampleStoreDbContext();
+
+        var myproducts = from p in (context.Products).ToList()
+                         join
+                         b in context.Brands
+                         on p.BrandId equals b.BrandId
+                         where p.BrandId==brandidToSearch    
+                         select p;
+
+        foreach(var product in myproducts)
+        {
+            Console.WriteLine(product);
+        }
+        
     }
 }

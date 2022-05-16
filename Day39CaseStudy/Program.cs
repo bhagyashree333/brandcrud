@@ -14,6 +14,9 @@ Requirement:
 IMenuService menuService = new MenuService();
 var uiBrandService = new UserInterfaceCrudBrandService();
 var uiProductService = new UserInterfaceCrudProductService();
+var uiCategoryService=new UserinterfaceCrudCategoryService();
+
+
 
 do
 {
@@ -45,8 +48,21 @@ do
             uiProductService.Delete();
             break;
         case MenuOptions.ProductShow:
-            uiProductService.Show();
+            uiProductService.Show();                         //GetProductByBrand();
             break;
+        case MenuOptions.CategoryAdd:
+            uiCategoryService.Add();
+            break;
+        case MenuOptions.CategoryUpdate:
+            uiCategoryService.Update();
+            break;
+        case MenuOptions.CategoryShow:
+            uiCategoryService.show();
+            break;
+        case MenuOptions.CategoryDelete:
+            uiCategoryService.Delete();
+            break;
+           
     }
 
 } while (true);

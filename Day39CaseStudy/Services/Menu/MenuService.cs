@@ -97,7 +97,7 @@ public class MenuService : IMenuService
 
     private static void ShowErrorMessage(string message)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.Red;                                   
         Console.WriteLine(message);
         Console.Beep();
         Console.ResetColor();
