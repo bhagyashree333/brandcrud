@@ -5,9 +5,9 @@ namespace Day39CaseStudy.DataAccess.Models;
 
 [Table("brands", Schema = "production")]
 public class Brand
-{    
+{
     [Key]
-    [Column("brand_id")]    
+    [Column("brand_id")]
     public int? BrandId { get; set; }       // Check why this worked without ?. 
                                             //brand id is pk then how can it be empty?
 

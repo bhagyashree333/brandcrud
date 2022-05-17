@@ -21,7 +21,7 @@ public class Product
 
     [Column("category_id")]
     public int CategoryId { get; set; }
-  
+
     [ForeignKey("CategoryId")]
     public Category Category { get; set; }
 
@@ -31,10 +31,10 @@ public class Product
     [Column("list_price")]
     public decimal ListPrice { get; set; }
 
-    public static string Header => $"| ProductId | ProductName                                | BrandId                     | BrandName                | CategoryId    |CategoryName    | ModelYear          | ListPrice";
+    public static string Header => $"| ProductId | ProductName                                      | BrandId      | BrandName | CategoryId    |CategoryName            | ModelYear          | ListPrice";
 
     public override string ToString()
     {
-        return $" |{ProductId,-10}|{ProductName,-50}  |{BrandId,-20}  |{Brand?.BrandName,-10}  |{CategoryId,-10} |{Category.CategoryName,-30}  |{ModelYear,-15}  |{ListPrice,-15}";
+        return $" |{ProductId,-10}|{ProductName,-50}  |{BrandId,-10}  |{Brand?.BrandName,-10}  |{CategoryId,-10} |{Category.CategoryName,-30}  |{ModelYear,-15}  |{ListPrice,-15}";
     }
 }

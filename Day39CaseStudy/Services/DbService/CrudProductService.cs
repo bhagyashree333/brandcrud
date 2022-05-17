@@ -26,46 +26,32 @@ public class CrudProductService : ICrudService<Product>
         //        .ThenBy(p => p.ProductId)
         //    .ToList();
 
-
+       
         var allProducts = (from p in context.Products
-                          join
-                          b in context.Brands
-                          on
-                          p.BrandId equals b.BrandId
-                          join
-                          c in context.Categories
-                          on
-                          p.CategoryId equals c.CategoryId
-                          orderby p.CategoryId, p.BrandId
-                          select new Product
-                          { 
-                           ProductId = p.ProductId,
-                           ProductName = p.ProductName,
-                           BrandId = p.BrandId, 
-                           CategoryId = p.CategoryId,
-                           ModelYear = p.ModelYear,
-                           ListPrice = p.ListPrice, 
-                           Brand=b,
-                           Category=c,
-                         
-                          
-                          
-                          }).ToList();
+                           join
+                           b in context.Brands
+                           on
+                           p.BrandId equals b.BrandId
+                           join
+                           c in context.Categories
+                           on
+                           p.CategoryId equals c.CategoryId                         
+                           orderby p.CategoryId, p.BrandId
+                           select new Product
+                           {
+                               ProductId = p.ProductId,
+                               ProductName = p.ProductName,
+                               BrandId = p.BrandId,
+                               CategoryId = p.CategoryId,
+                               ModelYear = p.ModelYear,
+                               ListPrice = p.ListPrice,
+                               Brand = b,
+                               Category = c
+                           }).ToList();
 
+       
 
-
-
-
-
-        //Console.WriteLine(allProducts);
-
-
-        return allProducts.ToList();
-
-
-
-
-
+        return allProducts;
     }
 
     public void Update(Product product)
@@ -82,9 +68,9 @@ public class CrudProductService : ICrudService<Product>
 
         // var product = context.Products.SingleOrDefault(b => b.ProductName == productName);
         var product = from p in context.Products
-                      where p.ProductName == productName 
+                      where p.ProductName == productName
                       select p;
-                     
+
         return product.First();
     }
 
@@ -94,8 +80,8 @@ public class CrudProductService : ICrudService<Product>
 
         //var product = context.Products.Find(productId);
         var product = from p in context.Products
-                     where p.ProductId == productId
-                     select p;
+                      where p.ProductId == productId
+                      select p;
 
         if (product == null)
         {
@@ -103,7 +89,7 @@ public class CrudProductService : ICrudService<Product>
             return;
         }
 
-        var productIwantToDelete=product.First();
+        var productIwantToDelete = product.First();
         context.Products.Remove(productIwantToDelete);
         context.SaveChanges();
     }
@@ -117,13 +103,47 @@ public class CrudProductService : ICrudService<Product>
                          join
                          b in context.Brands
                          on p.BrandId equals b.BrandId
-                         where p.BrandId==brandidToSearch    
+                         where p.BrandId == brandidToSearch
                          select p;
 
-        foreach(var product in myproducts)
+        foreach (var product in myproducts)
         {
+
             Console.WriteLine(product);
         }
-        
+
+    }
+
+    public void brandThenProduct()
+    {
+        using var context = new SampleStoreDbContext();
+        //foreach (var brand in context.Brands)
+        //{
+        //    Console.WriteLine($"{brand.BrandId},{brand.BrandName}");
+
+        //    var product = (from p in context.Products
+        //                   where p.BrandId == brand.BrandId
+        //                   select new Product
+        //                   {
+        //                       ProductId = p.ProductId,
+        //                       ProductName = p.ProductName,
+        //                       BrandId = p.BrandId,
+        //                       CategoryId = p.CategoryId,
+        //                       ModelYear = p.ModelYear,
+        //                       ListPrice = p.ListPrice
+
+        //                   }).ToList();
+
+        //}
+       //var alldata= GetAll();
+       // var brndwiseproduct = from b in context.Brands
+       //                       join b2 in alldata
+       //                       on b.BrandId equals b2.BrandId
+       //                       where b.BrandId == b2.BrandId
+       //                       select b;
+                               
+
     }
 }
+
+
