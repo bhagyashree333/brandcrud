@@ -9,5 +9,5 @@ public interface ICrudService<T>
     void Update(T entity);
     T GetByName(string entityName);
     void Delete(int entityId);   
-    void GetProductByBrand(int brandidToSearch);
+    
 }

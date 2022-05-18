@@ -14,7 +14,7 @@ public class Brand
     [Column("brand_name")]
     public string BrandName { get; set; }
 
-    public static string Header => "BrandId |, BrandName";
+    public static string Header => "| BrandId | BrandName  |";
 
     public override string ToString()
     {

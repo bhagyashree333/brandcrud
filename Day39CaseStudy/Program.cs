@@ -48,7 +48,7 @@ do
             uiProductService.Delete();
             break;
         case MenuOptions.ProductShow:
-            uiProductService.Show();                         //GetProductByBrand();
+            uiProductService.Show();                         //GetProductByBrand()
             break;
         case MenuOptions.CategoryAdd:
             uiCategoryService.Add();
@@ -57,7 +57,7 @@ do
             uiCategoryService.Update();
             break;
         case MenuOptions.CategoryShow:
-            uiCategoryService.show();
+            uiCategoryService.Show();
             break;
         case MenuOptions.CategoryDelete:
             uiCategoryService.Delete();

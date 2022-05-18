@@ -18,7 +18,8 @@ public class CrudCategoryService : ICrudService<Category>
     {
         using var context = new SampleStoreDbContext();
         var category = from c in context.Categories
-                       where c.CategoryId .Equals(categoryId)
+                           //  where c.CategoryId.Equals(categoryId)
+                       where c.CategoryId == categoryId
                        select c;
         if (category == null)
         {
@@ -35,15 +36,10 @@ public class CrudCategoryService : ICrudService<Category>
     {
         using var context = new SampleStoreDbContext();
 
-        foreach(var cat in context.Categories)
-        {
-            Console.WriteLine($"{cat}");
-        }
-        return context.Categories.ToList();
-        //var allcats= from c in context.Categories
-        //             select c;
+        var allcats = from c in context.Categories
+                      select c;
 
-      //  return allcats;
+        return allcats.ToList();
     }
 
     public Category GetByName(string categoryName)
@@ -57,10 +53,6 @@ public class CrudCategoryService : ICrudService<Category>
         return category.First();
     }
 
-    public void GetProductByBrand(int brandidToSearch)
-    {
-        throw new NotImplementedException();
-    }
 
     public void Update(Category category)
     {

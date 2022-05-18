@@ -44,7 +44,7 @@ public class CrudBrandService : ICrudService<Brand>
                      where b.BrandName == brandName
                      select b;
         // var brand = context.Brands.SingleOrDefault(b => b.BrandName == brandName);
-        return brand2.First();
+        return brand2.SingleOrDefault();
 
     }
 
@@ -59,6 +59,10 @@ public class CrudBrandService : ICrudService<Brand>
                     where b.BrandId == brandId
                     select b;
 
+        //var brand = from b in context.Brands
+        //            where b.BrandName.Start
+        //            select b;
+
         if (brand == null)
         {
             Console.WriteLine($"BrandId {brandId} not found");
@@ -71,10 +75,6 @@ public class CrudBrandService : ICrudService<Brand>
         context.SaveChanges();
     }
 
-    public void GetProductByBrand(int brandidToSearch)
-    {
-        throw new NotImplementedException();
-    }
-
+   
 
 }

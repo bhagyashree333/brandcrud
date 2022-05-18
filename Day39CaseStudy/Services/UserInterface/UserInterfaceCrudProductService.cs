@@ -119,13 +119,13 @@ public class UserInterfaceCrudProductService
 
         Console.WriteLine("------------------------|");
         Console.WriteLine("Brand Details");
+        Console.WriteLine("------------------------|");
         Console.WriteLine(Brand.Header);
-        //foreach ( var br in mybrands)
-        //{
-        //    Console.WriteLine(br);
-        //}
-        //Console.WriteLine("------------------------");
-
+        foreach (var br in mybrands)
+        {
+            Console.WriteLine(br);
+        }
+        Console.WriteLine("------------------------");
 
         Console.WriteLine("Product List");
         Console.WriteLine("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
@@ -133,58 +133,61 @@ public class UserInterfaceCrudProductService
         Console.WriteLine(Product.Header);
         Console.WriteLine("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
 
-        // var tempbrandid = 1;
-        //foreach (var brands in mybrands)
-        //{
-        //    foreach (var product in prods)
-        //    {
-        //        if(brands.BrandId == product.BrandId)
-        //        { 
-
-        //            Console.WriteLine(brands);
-        //            Console.WriteLine(product);
-
-        //        }
-
-
-        //    }
-
-        //}
-        //int brandcount=mybrands.Count();
         foreach (var product in prods)
         {
-            foreach (var brand in mybrands)
+            foreach (var brands in mybrands)
             {
-                for (int i = 0; i < mybrands.Count(); i++)
+
+                if (brands.BrandId == product.BrandId)
                 {
-                    if (product.BrandId == i)
-                    {
-                        Console.WriteLine(brand);
-                        Console.WriteLine(product);
-                    }
+                    Console.WriteLine(brands);
+                    Console.WriteLine(product);
                 }
+
             }
         }
 
+        //int brandcount = mybrands.Count();
 
 
+        //foreach (var brand in mybrands)
+        //{
+        //    foreach (var product in prods)
+        //    {
+        //        for (int i = 0; i < brandcount; i++)
+        //    {
 
+        //            if (i == brand.BrandId)
+        //            {
+        //                Console.WriteLine(brand);
+
+        //                Console.WriteLine(product);
+        //            }
+        //        }
+        //    }
+
+        //}
         Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
-    public void GetProductByBrand()
-    {
-        Console.WriteLine("Enter brand id");
-        var brandidToSearch = int.Parse(Console.ReadLine());
-        // var prods = _productService.GetAll();
-
-        if (brandidToSearch == null)
-        {
-            Console.WriteLine($"No product exists related to brand {brandidToSearch}");
-            return;
-        }
-        Console.WriteLine(Product.Header);
-        _productService.GetProductByBrand(brandidToSearch);
-
-    }
+   
 }
+
+
+
+
+//public void GetProductByBrand()
+//{
+//    Console.WriteLine("Enter brand id");
+//    var brandidToSearch = int.Parse(Console.ReadLine());
+//    // var prods = _productService.GetAll();
+
+//    if (brandidToSearch == null)
+//    {
+//        Console.WriteLine($"No product exists related to brand {brandidToSearch}");
+//        return;
+//    }
+//    Console.WriteLine(Product.Header);
+//    _productService.GetProductByBrand(brandidToSearch);
+
+//}

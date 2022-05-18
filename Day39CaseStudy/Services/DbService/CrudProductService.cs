@@ -26,7 +26,7 @@ public class CrudProductService : ICrudService<Product>
         //        .ThenBy(p => p.ProductId)
         //    .ToList();
 
-       
+
         var allProducts = (from p in context.Products
                            join
                            b in context.Brands
@@ -35,8 +35,9 @@ public class CrudProductService : ICrudService<Product>
                            join
                            c in context.Categories
                            on
-                           p.CategoryId equals c.CategoryId                         
+                           p.CategoryId equals c.CategoryId
                            orderby p.CategoryId, p.BrandId
+
                            select new Product
                            {
                                ProductId = p.ProductId,
@@ -48,8 +49,6 @@ public class CrudProductService : ICrudService<Product>
                                Brand = b,
                                Category = c
                            }).ToList();
-
-       
 
         return allProducts;
     }
@@ -73,7 +72,7 @@ public class CrudProductService : ICrudService<Product>
 
         return product.First();
     }
-
+      
     public void Delete(int productId)
     {
         using var context = new SampleStoreDbContext();
@@ -113,37 +112,68 @@ public class CrudProductService : ICrudService<Product>
         }
 
     }
-
-    public void brandThenProduct()
-    {
-        using var context = new SampleStoreDbContext();
-        //foreach (var brand in context.Brands)
-        //{
-        //    Console.WriteLine($"{brand.BrandId},{brand.BrandName}");
-
-        //    var product = (from p in context.Products
-        //                   where p.BrandId == brand.BrandId
-        //                   select new Product
-        //                   {
-        //                       ProductId = p.ProductId,
-        //                       ProductName = p.ProductName,
-        //                       BrandId = p.BrandId,
-        //                       CategoryId = p.CategoryId,
-        //                       ModelYear = p.ModelYear,
-        //                       ListPrice = p.ListPrice
-
-        //                   }).ToList();
-
-        //}
-       //var alldata= GetAll();
-       // var brndwiseproduct = from b in context.Brands
-       //                       join b2 in alldata
-       //                       on b.BrandId equals b2.BrandId
-       //                       where b.BrandId == b2.BrandId
-       //                       select b;
-                               
-
-    }
 }
 
+//public void brandThenProduct()
+//{
+//  using var context = new SampleStoreDbContext();
+//foreach (var brand in context.Brands)
+//{
+//    Console.WriteLine($"{brand.BrandId},{brand.BrandName}");
+
+//    var product = (from p in context.Products
+//                   where p.BrandId == brand.BrandId
+//                   select new Product
+//                   {
+//                       ProductId = p.ProductId,
+//                       ProductName = p.ProductName,
+//                       BrandId = p.BrandId,
+//                       CategoryId = p.CategoryId,
+//                       ModelYear = p.ModelYear,
+//                       ListPrice = p.ListPrice
+
+//                   }).ToList();
+
+//}
+//var alldata = GetAll();
+//var brndwiseproduct = from b in context.Brands
+//                      join b2 in alldata
+//                      on b.BrandId equals b2.BrandId
+//                      where b.BrandId == b2.BrandId
+//                      select b;
+
+
+
+//public List<Product> GetproductInfoBybrandId()
+//{
+//using var context = new SampleStoreDbContext();
+
+//var myallProducts = (from p in context.Products
+//                     join b in context.Brands
+//                     on p.BrandId equals b.BrandId
+//                     join
+//                     c in context.Categories
+//                     on
+//                     p.CategoryId equals c.CategoryId
+//                     group p.ProductId by p.BrandId into myProds
+//                     select new 
+//                     {
+//                         ProductId = myProds.Key,
+
+//                         brands = myProds.ToList()
+//                     }).ToList();
+
+//return myallProducts;
+
+//}
+
+
+//public class GetProductInfo
+//{
+//    public int ProductId { get; set; }
+//    public string ProductName { get; set; }
+//    public string CategoryName { get; set; }
+
+//    public int BrandId { get; set; }
+//}
 

@@ -84,22 +84,22 @@ public class UserinterfaceCrudCategoryService
         }
 
     }
-    public void show()
+    public void Show()
     {
         var categories = _categoryservice.GetAll();
 
         Console.WriteLine("category List");
-        Console.WriteLine("------------------");
+        Console.WriteLine("|-----------------------------|");
 
         Console.WriteLine(Category.Header);
-        Console.WriteLine("------------------");
+        Console.WriteLine("|-----------------------------|");
 
         
         foreach(var cats in categories)
         {
             Console.WriteLine(cats);
         }
-        Console.WriteLine("-------------------");
+        Console.WriteLine("------------------------------|");
     
     }
 
